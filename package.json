@@ -1,0 +1,35 @@
+{
+  "name": "auto-trade",
+  "version": "1.0.0",
+  "description": "Micro contract for automated trading within the pool",
+  "license": "UNLICENSED",
+  "scripts": {
+    "develop-start": "[ ! -f '.ganache-pid' ] && (ganache-cli --networkId 1 --defaultBalanceEther 1000000 --mnemonic 'development' & printf '%d' $! > .ganache-pid && sleep 5) || exit 0",
+    "develop-stop": "[ -f '.ganache-pid' ] && (kill $(cat .ganache-pid) && rm -f .ganache-pid) || exit 0",
+    "develop-restart": "yarn develop-stop && yarn develop-start",
+    "deploy-develop": "truffle migrate --compile-all --network develop",
+    "compile": "truffle compile --all",
+    "lint": "yarn lint-js && yarn lint-sol && yarn lint-security",
+    "lint-security": "solium -d contracts/",
+    "lint-fix": "yarn lint-js-fix && yarn lint-sol-fix && yarn lint-security-fix",
+    "lint-security-fix": "solium -d contracts/ --fix",
+    "lint-js": "eslint *.js test/*.js test/**/*.js",
+    "lint-js-fix": "eslint *.js test/*.js test/**/*.js --fix",
+    "lint-sol": "solhint contracts/*.sol",
+    "lint-sol-fix": "solhint contracts/*.sol --fix",
+    "lint-sol-watch": "solhint contracts/*.sol --watch",
+    "qa": "yarn lint && yarn test",
+    "test": "truffle test --network develop"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.3.0",
+    "bignumber.js": "^9.0.1",
+    "eslint": "^7.16.0",
+    "eslint-config-google": "^0.14.0",
+    "ethlint": "^1.2.5",
+    "ganache-cli": "^6.12.1",
+    "solhint": "^3.3.2",
+    "truffle": "^5.1.59",
+    "truffle-assertions": "^0.9.2"
+  }
+}

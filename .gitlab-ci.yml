@@ -1,0 +1,34 @@
+image: node
+
+stages:
+  - deps
+  - qa
+  - build
+
+cache:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - node_modules
+
+yarn:
+  stage: deps
+  script: yarn
+
+lint:
+  stage: qa
+  script: yarn lint
+
+test:
+  stage: qa
+  script:
+    - yarn develop-start # TODO move to service
+    - yarn test
+
+compile:
+  stage: build
+  script: yarn compile
+  artifacts:
+    paths:
+      - build

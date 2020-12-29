@@ -1,0 +1,21 @@
+{
+  "extends": "solhint:default",
+  "rules": {
+    "quotes": ["error", "double"],
+    "max-line-length": ["error", 120],
+    "no-unused-vars": "error",
+    "reason-string": ["error", {"maxLength": 64}],
+    "avoid-call-value": "off",
+    "no-complex-fallback": "off",
+    "multiple-sends": "off",
+    "no-inline-assembly": "off",
+    "avoid-low-level-calls": "off",
+    "func-param-name-mixedcase": "off",
+    "func-name-mixedcase": "off",
+    "func-order": "off",
+    "payable-fallback": "off",
+    "function-max-lines": "off",
+    "code-complexity": "off",
+    "max-states-count": "off"
+  }
+}
